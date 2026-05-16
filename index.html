@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日本动漫风格馆 | Manga Style Gallery</title>
+  <title>动漫风格馆 | Comic Style Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #0a0a0a;
       color: #fff;
-      font-family: 'Helvetica Neue', 'Noto Sans SC', Arial, sans-serif;
+      font-family: 'Noto Serif SC', 'Georgia', serif;
       overflow-x: hidden;
     }
 
@@ -36,9 +39,9 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: linear-gradient(180deg,
-        rgba(0,0,0,0.2) 0%,
-        rgba(0,0,0,0.4) 40%,
-        rgba(0,0,0,0.6) 100%
+        rgba(10,10,30,0.3) 0%,
+        rgba(10,10,30,0.5) 40%,
+        rgba(10,10,30,0.75) 100%
       );
       z-index: 2;
     }
@@ -49,43 +52,59 @@
       padding: 0 20px;
     }
     .hero-title {
-      font-size: clamp(3rem, 10vw, 8rem);
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      line-height: 1.1;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #ff2a6d 0%, #ff8a00 50%, #fcee0a 100%);
+      font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, 
+        #e8d5b7 0%, 
+        #c9a96e 25%, 
+        #f0e6d3 50%, 
+        #c9a96e 75%, 
+        #e8d5b7 100%
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 40px rgba(255,42,109,0.4));
-      animation: titlePulse 3s ease-in-out infinite;
+      filter: drop-shadow(0 4px 20px rgba(201,169,110,0.3));
+      animation: titleShimmer 4s ease-in-out infinite;
     }
     .hero-subtitle {
-      margin-top: 1rem;
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      color: rgba(255,255,255,0.7);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
+      margin-top: 1.5rem;
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+      color: rgba(232,213,183,0.7);
+      letter-spacing: 0.4em;
+      font-weight: 400;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+      margin: 1.5rem auto;
     }
     .audio-toggle {
       position: absolute;
       bottom: 30px;
       right: 30px;
       z-index: 4;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,169,110,0.3);
+      color: #e8d5b7;
       padding: 12px 20px;
       border-radius: 30px;
       cursor: pointer;
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
-      font-size: 14px;
+      font-size: 13px;
+      font-family: 'Noto Serif SC', serif;
+      letter-spacing: 0.1em;
     }
     .audio-toggle:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(201,169,110,0.15);
       transform: scale(1.05);
+      border-color: rgba(201,169,110,0.5);
     }
     .scroll-hint {
       position: absolute;
@@ -93,132 +112,157 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 4;
-      color: rgba(255,255,255,0.5);
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      animation: bounce 2s ease-in-out infinite;
+      color: rgba(232,213,183,0.4);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      animation: bounce 2.5s ease-in-out infinite;
+      font-family: 'Noto Serif SC', serif;
     }
 
-    @keyframes titlePulse {
-      0%, 100% { filter: drop-shadow(0 0 40px rgba(255,42,109,0.4)); }
-      50% { filter: drop-shadow(0 0 80px rgba(255,138,0,0.6)); }
+    @keyframes titleShimmer {
+      0%, 100% { filter: drop-shadow(0 4px 20px rgba(201,169,110,0.3)); }
+      50% { filter: drop-shadow(0 4px 40px rgba(201,169,110,0.5)); }
     }
     @keyframes bounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(10px); }
+      50% { transform: translateX(-50%) translateY(12px); }
     }
 
     /* ===== GALLERY AREA ===== */
     .gallery {
-      padding: 80px 20px 120px;
+      padding: 100px 20px 120px;
       max-width: 1600px;
       margin: 0 auto;
     }
-    .gallery-title {
+    .gallery-header {
       text-align: center;
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 800;
-      margin-bottom: 20px;
-      letter-spacing: 0.1em;
-      background: linear-gradient(90deg, #fff 0%, #888 100%);
+      margin-bottom: 80px;
+    }
+    .gallery-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      background: linear-gradient(90deg, #e8d5b7 0%, #c9a96e 50%, #e8d5b7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
     }
     .gallery-subtitle {
-      text-align: center;
-      color: rgba(255,255,255,0.4);
-      font-size: 14px;
-      letter-spacing: 0.2em;
-      margin-bottom: 60px;
+      color: rgba(232,213,183,0.4);
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      font-family: 'Noto Serif SC', serif;
+    }
+    .gallery-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+      margin: 20px auto 0;
     }
 
     /* Masonry waterfall */
     .waterfall {
       column-count: 4;
-      column-gap: 20px;
+      column-gap: 24px;
     }
     @media (max-width: 1200px) {
-      .waterfall { column-count: 3; }
+      .waterfall { column-count: 3; column-gap: 20px; }
     }
     @media (max-width: 768px) {
-      .waterfall { column-count: 2; column-gap: 12px; }
-      .gallery { padding: 40px 12px 80px; }
+      .waterfall { column-count: 2; column-gap: 14px; }
+      .gallery { padding: 60px 14px 80px; }
     }
 
     .manga-card {
       break-inside: avoid;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       position: relative;
       overflow: hidden;
-      border-radius: 12px;
-      background: #1a1a1a;
+      border-radius: 10px;
+      background: #141414;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                   box-shadow 0.5s ease;
       cursor: pointer;
     }
     .manga-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 25px 80px rgba(255,42,109,0.25);
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 20px 60px rgba(201,169,110,0.15);
     }
     .manga-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: filter 0.5s ease, transform 0.5s ease;
+      transition: transform 0.6s ease, filter 0.4s ease;
     }
-    /* Different heights for true waterfall effect */
-    .manga-card:nth-child(1) { height: 420px; }
-    .manga-card:nth-child(2) { height: 520px; }
-    .manga-card:nth-child(3) { height: 380px; }
-    .manga-card:nth-child(4) { height: 580px; }
-    .manga-card:nth-child(5) { height: 450px; }
-    .manga-card:nth-child(6) { height: 500px; }
-    .manga-card:nth-child(7) { height: 400px; }
-    .manga-card:nth-child(8) { height: 550px; }
-    .manga-card:nth-child(9) { height: 480px; }
-    .manga-card:nth-child(10) { height: 360px; }
-    .manga-card:nth-child(11) { height: 530px; }
-    .manga-card:nth-child(12) { height: 440px; }
     .manga-card:hover img {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
     .manga-label {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 40px 16px 16px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      padding: 50px 16px 16px;
+      background: linear-gradient(transparent, rgba(10,10,10,0.85));
       transition: background 0.3s ease;
     }
     .manga-card:hover .manga-label {
-      background: linear-gradient(transparent, rgba(255,42,109,0.3), rgba(0,0,0,0.9));
+      background: linear-gradient(transparent, rgba(201,169,110,0.12), rgba(10,10,10,0.9));
     }
     .manga-label .name-ja {
-      font-size: 18px;
-      font-weight: 800;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 16px;
+      font-weight: 700;
       margin-bottom: 4px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      color: #f0e6d3;
     }
     .manga-label .name-en {
-      font-size: 11px;
-      color: rgba(255,255,255,0.6);
+      font-family: 'Noto Serif SC', serif;
+      font-size: 10px;
+      color: rgba(232,213,183,0.5);
       text-transform: uppercase;
       letter-spacing: 0.15em;
     }
+
+    /* Different heights for waterfall */
+    .manga-card:nth-child(1) { height: 420px; }
+    .manga-card:nth-child(2) { height: 540px; }
+    .manga-card:nth-child(3) { height: 380px; }
+    .manga-card:nth-child(4) { height: 580px; }
+    .manga-card:nth-child(5) { height: 460px; }
+    .manga-card:nth-child(6) { height: 510px; }
+    .manga-card:nth-child(7) { height: 400px; }
+    .manga-card:nth-child(8) { height: 560px; }
+    .manga-card:nth-child(9) { height: 490px; }
+    .manga-card:nth-child(10) { height: 370px; }
+    .manga-card:nth-child(11) { height: 530px; }
+    .manga-card:nth-child(12) { height: 450px; }
+    .manga-card:nth-child(13) { height: 500px; }
+    .manga-card:nth-child(14) { height: 410px; }
+    .manga-card:nth-child(15) { height: 570px; }
+    .manga-card:nth-child(16) { height: 440px; }
+    .manga-card:nth-child(17) { height: 520px; }
+    .manga-card:nth-child(18) { height: 390px; }
+    .manga-card:nth-child(19) { height: 550px; }
+    .manga-card:nth-child(20) { height: 470px; }
+    .manga-card:nth-child(21) { height: 430px; }
 
     /* Footer */
     .footer {
       text-align: center;
       padding: 60px 20px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.3);
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      border-top: 1px solid rgba(201,169,110,0.08);
+      color: rgba(232,213,183,0.25);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-family: 'Noto Serif SC', serif;
     }
 
-    /* Fade in animation */
+    /* Fade in */
     .manga-card {
       opacity: 0;
       animation: fadeInUp 0.8s ease forwards;
@@ -238,19 +282,23 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-title">日本动漫风格馆</h1>
-      <p class="hero-subtitle">Manga Style Gallery</p>
+      <h1 class="hero-title">动漫风格馆</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">漫画艺术的无限可能</p>
     </div>
     <button class="audio-toggle" id="audioToggle">
       🔇 开启音效
     </button>
-    <div class="scroll-hint">▼ 向下滚动探索 ▼</div>
+    <div class="scroll-hint">▼ 向下探索 ▼</div>
   </section>
 
   <!-- GALLERY -->
   <section class="gallery">
-    <h2 class="gallery-title">漫画家风格典藏</h2>
-    <p class="gallery-subtitle">每张图片均由 AI 生成 · 再现传奇漫画家的独特笔触</p>
+    <div class="gallery-header">
+      <h2 class="gallery-title">漫画家风格典藏</h2>
+      <p class="gallery-subtitle">每张图片均由 AI 生成 · 再现全球传奇漫画家的独特笔触</p>
+      <div class="gallery-line"></div>
+    </div>
     <div class="waterfall" id="gallery">
 
       <div class="manga-card" style="animation-delay: 0.1s">
@@ -261,7 +309,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.15s">
+      <div class="manga-card" style="animation-delay: 0.12s">
         <img src="assets/manga/02-akira-toriyama.jpg" alt="鸟山明" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">鸟山明</div>
@@ -269,7 +317,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.2s">
+      <div class="manga-card" style="animation-delay: 0.14s">
         <img src="assets/manga/03-eiichiro-oda.jpg" alt="尾田荣一郎" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">尾田荣一郎</div>
@@ -277,7 +325,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.25s">
+      <div class="manga-card" style="animation-delay: 0.16s">
         <img src="assets/manga/04-takehiko-inoue.jpg" alt="井上雄彦" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">井上雄彦</div>
@@ -285,7 +333,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.3s">
+      <div class="manga-card" style="animation-delay: 0.18s">
         <img src="assets/manga/05-hajime-isayama.jpg" alt="谏山创" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">谏山创</div>
@@ -293,7 +341,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.35s">
+      <div class="manga-card" style="animation-delay: 0.2s">
         <img src="assets/manga/06-hirohiko-araki.jpg" alt="荒木飞吕彦" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">荒木飞吕彦</div>
@@ -301,7 +349,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.4s">
+      <div class="manga-card" style="animation-delay: 0.22s">
         <img src="assets/manga/07-hayao-miyazaki.jpg" alt="宫崎骏" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">宫崎骏</div>
@@ -309,7 +357,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.45s">
+      <div class="manga-card" style="animation-delay: 0.24s">
         <img src="assets/manga/08-naoki-urasawa.jpg" alt="浦泽直树" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">浦泽直树</div>
@@ -317,7 +365,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.5s">
+      <div class="manga-card" style="animation-delay: 0.26s">
         <img src="assets/manga/09-kentaro-miura.jpg" alt="三蒲健太郎" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">三蒲健太郎</div>
@@ -325,7 +373,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.55s">
+      <div class="manga-card" style="animation-delay: 0.28s">
         <img src="assets/manga/10-yoshihiro-togashi.jpg" alt="富棟义博" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">富棟义博</div>
@@ -333,7 +381,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.6s">
+      <div class="manga-card" style="animation-delay: 0.3s">
         <img src="assets/manga/11-tsutomu-nihei.jpg" alt="二瓶勉" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">二瓶勉</div>
@@ -341,7 +389,7 @@
         </div>
       </div>
 
-      <div class="manga-card" style="animation-delay: 0.65s">
+      <div class="manga-card" style="animation-delay: 0.32s">
         <img src="assets/manga/12-makoto-yukimura.jpg" alt="幸村诚" loading="lazy">
         <div class="manga-label">
           <div class="name-ja">幸村诚</div>
@@ -349,15 +397,87 @@
         </div>
       </div>
 
+      <!-- Global Artists -->
+      <div class="manga-card" style="animation-delay: 0.34s">
+        <img src="assets/manga/13-stan-lee.jpg" alt="Stan Lee" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">斯坦·李风格</div>
+          <div class="name-en">Stan Lee Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.36s">
+        <img src="assets/manga/14-frank-miller.jpg" alt="Frank Miller" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">弗兰克·米勒风格</div>
+          <div class="name-en">Frank Miller Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.38s">
+        <img src="assets/manga/15-moebius.jpg" alt="Moebius" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">墨比斯风格</div>
+          <div class="name-en">Moebius Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.4s">
+        <img src="assets/manga/16-tintin.jpg" alt="Tintin" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">丁丁风格</div>
+          <div class="name-en">Tintin / Herge Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.42s">
+        <img src="assets/manga/17-junji-ito.jpg" alt="Junji Ito" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">伊藤润二风格</div>
+          <div class="name-en">Junji Ito Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.44s">
+        <img src="assets/manga/18-katsuhiro-otomo.jpg" alt="Katsuhiro Otomo" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">大友克洋风格</div>
+          <div class="name-en">Katsuhiro Otomo Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.46s">
+        <img src="assets/manga/19-art-spiegelman.jpg" alt="Art Spiegelman" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">斯皮格尔曼风格</div>
+          <div class="name-en">Art Spiegelman Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.48s">
+        <img src="assets/manga/20-osamu-tezuka.jpg" alt="Osamu Tezuka" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">手冢治虫风格</div>
+          <div class="name-en">Osamu Tezuka Style</div>
+        </div>
+      </div>
+
+      <div class="manga-card" style="animation-delay: 0.5s">
+        <img src="assets/manga/21-akira-toriyama.jpg" alt="Akira Toriyama" loading="lazy">
+        <div class="manga-label">
+          <div class="name-ja">鸟山明风格</div>
+          <div class="name-en">Akira Toriyama Style</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <footer class="footer">
-    日本动漫风格馆 · Generated by Seedream 5.0 & Seedance 2.0 · 火山方舟 Agent Plan
+    动漫风格馆 · Generated by Seedream 5.0 & Seedance 2.0
   </footer>
 
   <script>
-    // Audio toggle
     const video = document.getElementById('heroVideo');
     const audioBtn = document.getElementById('audioToggle');
     audioBtn.addEventListener('click', () => {
