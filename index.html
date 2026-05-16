@@ -162,22 +162,24 @@
     }
     .manga-card img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
       transition: filter 0.5s ease, transform 0.5s ease;
     }
-    /* Different aspect ratios for waterfall effect */
-    .manga-card:nth-child(1) img { aspect-ratio: 2/3; }
-    .manga-card:nth-child(2) img { aspect-ratio: 3/4; }
-    .manga-card:nth-child(3) img { aspect-ratio: 2/3.5; }
-    .manga-card:nth-child(4) img { aspect-ratio: 3/5; }
-    .manga-card:nth-child(5) img { aspect-ratio: 2/2.8; }
-    .manga-card:nth-child(6) img { aspect-ratio: 3/4.2; }
-    .manga-card:nth-child(7) img { aspect-ratio: 2/3.2; }
-    .manga-card:nth-child(8) img { aspect-ratio: 3/5.5; }
-    .manga-card:nth-child(9) img { aspect-ratio: 2/2.5; }
-    .manga-card:nth-child(10) img { aspect-ratio: 3/4.5; }
-    .manga-card:nth-child(11) img { aspect-ratio: 2/3.8; }
-    .manga-card:nth-child(12) img { aspect-ratio: 3/3.5; }
+    /* Different heights for true waterfall effect */
+    .manga-card:nth-child(1) { height: 420px; }
+    .manga-card:nth-child(2) { height: 520px; }
+    .manga-card:nth-child(3) { height: 380px; }
+    .manga-card:nth-child(4) { height: 580px; }
+    .manga-card:nth-child(5) { height: 450px; }
+    .manga-card:nth-child(6) { height: 500px; }
+    .manga-card:nth-child(7) { height: 400px; }
+    .manga-card:nth-child(8) { height: 550px; }
+    .manga-card:nth-child(9) { height: 480px; }
+    .manga-card:nth-child(10) { height: 360px; }
+    .manga-card:nth-child(11) { height: 530px; }
+    .manga-card:nth-child(12) { height: 440px; }
     .manga-card:hover img {
       transform: scale(1.05);
     }
